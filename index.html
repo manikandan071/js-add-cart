@@ -5,9 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/icofont.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+<div class="cart">
+    <div class="container">
+        <div class="title d-flex justify-content-between">
+            <h4>Easy Shopping</h4>
+            <button id="cart">Cart</button>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label for="">Electronics ;</label>
+                <select value="Electronics" id="productlist">
+                    <option value="mobile">Mobile</option>
+                    <option value="headphones">Headphones</option>
+                    <option value="laptop">Laptop</option>
+                </select>
+                <button id="search">search</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="cardlist mt-5">
+    <div class="container">
+        <div class="row" id="cartlist">
+            
+        </div>
+    </div>
+</div>
+
+<div class="display mt-5">
+    <div class="container">
+        <div class="row" id="display">
+
+        </div>
+    </div>
+</div>
 
 <script src="js/main.js"></script>
 </body>
