@@ -5,3 +5,30 @@ img{
 #cartlist{
     display: none;
 }
+#cart{
+    background: transparent;
+    border: none;
+    font-size: 27px;
+    color: #a66ddbdb;
+}
+.adding{
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    color: #a66ddbdb;
+}
+button{
+    border: none;
+    background-color: #a66ddbdb;
+    color: #fff;
+    border-radius: 5px;
+}
+.menu-sec{
+    box-shadow: 0 0 5px #8088dbd1;
+}
+.cart{
+    padding-top: 30px;
+}
+span{
+    font-size: 20px;
+}

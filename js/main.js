@@ -1,29 +1,29 @@
 var electronis=[{
-    access:"mobile",id:11,brand:"redmi",price:15000,qty:1,img:"images/mobile/redmi.jpeg"
+    access:"mobile",id:11,brand:"Redmi Note 10T 5G",total:18000,price:15000,qty:1,img:"images/mobile/redmi.jpeg"
 },
 {
-    access:"mobile",id:12,brand:"realme",price:10000,qty:1,img:"images/mobile/realme.jpeg"
+    access:"mobile",id:12,brand:"Realme C31",total:12000,price:10000,qty:1,img:"images/mobile/realme.jpeg"
 },
 {
-    access:"mobile",id:13,brand:"apple",price:55000,qty:1,img:"images/mobile/apple.jpeg"
+    access:"mobile",id:13,brand:"apple",total:65000,price:55000,qty:1,img:"images/mobile/apple.jpeg"
 },
 {
-    access:"headphone",id:101,brand:"boult",price:800,qty:1,img:"images/headphone/boult.jpeg"
+    access:"headphone",id:101,brand:"boult",total:1000,price:800,qty:1,img:"images/headphone/boult.jpeg"
 },
 {
-    access:"headphone",id:102,brand:"boot",price:900,qty:1,img:"images/headphone/boat.jpeg"
+    access:"headphone",id:102,brand:"boat",total:1300,price:900,qty:1,img:"images/headphone/boat.jpeg"
 },
 {
-    access:"headphone",id:103,brand:"jbl",price:600,qty:1,img:"images/headphone/jbl.jpeg"
+    access:"headphone",id:103,brand:"jbl",total:900,price:600,qty:1,img:"images/headphone/jbl.jpeg"
 },
 {
-    access:"laptop",id:111,brand:"hp",price:42000,qty:1,img:"images/laptop/hp.jpeg"
+    access:"laptop",id:111,brand:"hp",total:45000,price:42000,qty:1,img:"images/laptop/hp.jpeg"
 },
 {
-    access:"laptop",id:112,brand:"lenovo",price:35000,qty:1,img:"images/laptop/lenovo.jpeg"
+    access:"laptop",id:112,brand:"lenovo",total:40000,price:35000,qty:1,img:"images/laptop/lenovo.jpeg"
 },
 {
-    access:"laptop",id:113,brand:"acer",price:50000,qty:1,img:"images/laptop/acer.jpeg"
+    access:"laptop",id:113,brand:"acer",total:65000,price:50000,qty:1,img:"images/laptop/acer.jpeg"
 }
 ];
 function brand(a){
@@ -46,7 +46,7 @@ let display=document.getElementById("display");
 
 function generateCard(a){
     
-    let id,brandName,price,qty,img;
+    let id,brandName,price,qty,img,totalAmt;
 
     console.log(a[0].id);
     for(var i=0 ; i < a.length ; i++){
@@ -55,6 +55,7 @@ function generateCard(a){
         price=a[i].price;
         qty=a[i].qty;
         img=a[i].img;
+        totalAmt=a[i].total;
 
         let colm=document.createElement("div");
         colm.setAttribute("class","col-4");
@@ -72,26 +73,30 @@ function generateCard(a){
         title.setAttribute("class","brand");
         title.innerText=brandName;
         cardBdy.append(title);
-        let brandId=document.createElement("span");
-        brandId.innerText=id;
-        cardBdy.append(brandId);
-        let totalPrice=document.createElement("h6");
-        totalPrice.setAttribute("class","price")
-        totalPrice.innerText="$"+ price;
+        let totalPrice=document.createElement("span");
+        totalPrice.setAttribute("class","price");
+        let rupeeicon=document.createElement("i");
+        rupeeicon.setAttribute("class","icofont-rupee");
+        cardBdy.append(rupeeicon);
+        totalPrice.innerText=price;
         cardBdy.append(totalPrice);
-        let quantity=document.createElement("h5");
+
+        let quantity=document.createElement("h6");
         quantity.setAttribute("class","quantity");
-        quantity.innerText=qty;
+        
+        let del=document.createElement("del");
+        del.innerText=totalAmt;
+        quantity.append(del);
         cardBdy.append(quantity);
         let row=document.createElement("div");
         row.setAttribute("class","row");
         cardBdy.append(row);
         let buyBtn=document.createElement("button");
-        buyBtn.setAttribute("class","col-6");
+        buyBtn.setAttribute("class","col-4 m-3");
         buyBtn.innerText="Buy Now";
         row.append(buyBtn);
         let cartBtn=document.createElement("button");
-        cartBtn.setAttribute("class","col-6 cartbtn");
+        cartBtn.setAttribute("class","col-4 m-3 cartbtn");
         cartBtn.innerText="Add to Cart";
         row.append(cartBtn);
         
@@ -103,14 +108,16 @@ function qtyAdding(btn){
     let getPrnt=this.parentNode;
     let noOfqty=getPrnt.getElementsByClassName("noOfquantity")[0];
     noOfqty.innerText++;
-    console.log(getPrnt);
+    let fixedprice=getPrnt.getElementsByClassName("totalAmount")[0];
+    fixedprice.innerText=fixedprice.innerText*2;
+    console.log(fixedprice.innerText);
 }
 
 let cartList=document.getElementById("cartlist");
 function addtoCart(btn){
     let name=this.parentNode.parentNode.parentNode.parentNode;
     this.style.display="none";
-    let qty=name.getElementsByClassName("quantity")[0];
+    // let qty=name.getElementsByClassName("quantity")[0];
     let price=name.getElementsByClassName("price")[0];
     let brandName=name.getElementsByClassName("brand")[0];
    
@@ -131,12 +138,18 @@ function addtoCart(btn){
     let title=document.createElement("h4");
     title.innerText=brandName.innerText;
     cardBdy.append(title);
-    let totalPrice=document.createElement("h6");
+    let moneyicon=document.createElement("i");
+    moneyicon.setAttribute("class","icofont-rupee");
+    cardBdy.append(moneyicon);
+    let totalPrice=document.createElement("span");
+    totalPrice.setAttribute("class","totalAmount");
     totalPrice.innerText=price.innerText;
     cardBdy.append(totalPrice);
+    let br=document.createElement("br");
+    cardBdy.append(br);
     let quantity=document.createElement("h5");
     quantity.setAttribute("class","noOfquantity d-inline-block");
-    quantity.innerText=qty.innerText;
+    quantity.innerText=1;
     cardBdy.append(quantity);
     let addBtn=document.createElement("button");
     addBtn.setAttribute("class","adding");
